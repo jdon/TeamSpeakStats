@@ -40,7 +40,7 @@ create table if not exists public.logs
 );
 ```
 
-Insert into table
+Insert into table query
 
 ```
 INSERT INTO public.logs
