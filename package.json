@@ -1,0 +1,20 @@
+{
+	"name": "teamspeakstats",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"start": "node src/app.js"
+	},
+	"author": "",
+	"license": "ISC",
+	"dependencies": {
+		"debug": "^4.1.1",
+		"dotenv": "^8.0.0",
+		"moment": "^2.24.0",
+		"node-cron": "^2.0.3",
+		"pg": "^7.11.0",
+		"ts3-nodejs-library": "^1.16.0"
+	}
+}
