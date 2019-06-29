@@ -18,7 +18,7 @@ DEBUG_DEPTH=99
 
 For running the docker you can also use the `.env` file. e.g
 
-`docker run -p 8080:8080 --env-file .env -d jdon278/teamspeakstats`
+`docker run --env-file .env -d jdon278/teamspeakstats`
 
 GitHub: https://github.com/jdon/TeamSpeakStats
 
