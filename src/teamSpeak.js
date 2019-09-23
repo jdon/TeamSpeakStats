@@ -9,7 +9,7 @@ const username = process.env.teamSpeakUsername;
 const password = process.env.teamSpeakPassword;
 const nickname = process.env.teamSpeakNickname;
 
-module.exports = async function() {
+module.exports = async function () {
 	const ts3 = new TeamSpeak3({
 		host: host,
 		username: username,

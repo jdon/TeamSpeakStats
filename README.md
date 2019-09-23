@@ -14,6 +14,7 @@ teamSpeakNickname=QueryUser
 dataBaseURI=postgresql://dbUserNaME:dBPassword@host:port/database
 DEBUG=teamSpeakStats,teamSpeakStats-wrapper
 DEBUG_DEPTH=99
+bugsnagcode=ouhowqfh0823fhasfki5442441as
 ```
 
 For running the docker you can also use the `.env` file. e.g

@@ -11,6 +11,6 @@ COPY package*.json ./
 RUN npm ci --only=production
 
 # Bundle app source
-COPY . .
+COPY src ./src
 
 CMD [ "npm", "start" ]
