@@ -25,6 +25,7 @@ module.exports = async function() {
 				}
 				let clientStatsPromises = clients.map(insertStats);
 				await Promise.all(clientStatsPromises);
+				teamspeak.logout();
 				res('Successfully inserted stats');
 			})
 			.catch(rej);
