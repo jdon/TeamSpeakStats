@@ -1,26 +1,14 @@
 require('dotenv').config();
-var cron = require('node-cron');
-const debug = require('debug')('teamSpeakStats');
 
-const bugSnagCode = process.env.bugsnagcode
-let bugsnagClient;
-if (bugSnagCode) {
-	const bugsnag = require('@bugsnag/js')
-	bugsnagClient = bugsnag(bugSnagCode)
-}
-
+const bugSnagCode = process.env.bugsnagcode;
+const bugsnag = require('@bugsnag/js');
+bugsnag(bugSnagCode);
 
 const getStats = require('./teamSpeak');
 
-debug('Starting');
+const minutes = 10;
+const interval = minutes * 60 * 1000;
 
-cron.schedule('*/10 * * * *', async () => {
-	try {
-		await getStats();
-	} catch (error) {
-		if (bugSnagCode) {
-			bugsnagClient.notify(error)
-		}
-		debug.log(error);
-	}
-});
+setInterval(async () => {
+	await getStats();
+}, interval);
