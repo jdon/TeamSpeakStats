@@ -7,27 +7,27 @@ const username = process.env.teamSpeakUsername;
 const password = process.env.teamSpeakPassword;
 const nickname = process.env.teamSpeakNickname;
 
+let teamspeak = null;
+
 module.exports = async function() {
-	return new Promise((res, rej) => {
-		TeamSpeak.connect({
-			host: host,
-			username: username,
-			serverport: serverPort,
-			queryport: queryPort,
-			password: password,
-			nickname: nickname,
-			readyTimeout: 5000,
-		})
-			.then(async teamspeak => {
-				let clients = await teamspeak.clientList({ client_type: 0 });
-				if (!clients) {
-					return;
-				}
-				let clientStatsPromises = clients.map(insertStats);
-				await Promise.all(clientStatsPromises);
-				teamspeak.logout();
-				res('Successfully inserted stats');
-			})
-			.catch(rej);
+	teamspeak = await TeamSpeak.connect({
+		host: host,
+		username: username,
+		serverport: serverPort,
+		queryport: queryPort,
+		password: password,
+		nickname: nickname,
+		readyTimeout: 5000,
 	});
+	try {
+		let clients = await teamspeak.clientList({ client_type: 0 });
+		if (clients) {
+			let clientStatsPromises = clients.map(insertStats);
+			await Promise.all(clientStatsPromises);
+		}
+		await teamspeak.quit();
+	} catch (e) {
+		await teamspeak.forceQuit();
+		throw e;
+	}
 };
